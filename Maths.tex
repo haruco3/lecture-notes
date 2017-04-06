@@ -1,0 +1,89 @@
+\documentclass{article}
+
+\title{Mathematical Techniques for Computer Science - Notes}
+\author{Harvey Hyatt}
+
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+\maketitle
+
+\section{Analytical Geometry in the Plane}
+
+\paragraph{Points:}
+Given points P and Q with coordinates
+$\begin{pmatrix}p_1 \\ p_2\end{pmatrix}$
+and
+$\begin{pmatrix}q_1 \\ q_2\end{pmatrix}$,
+their distance $d$ can be computed using pythagoras:
+$$d = \sqrt{(q_1-p_1)^2+(q_2-p_2)^2}$$
+
+\paragraph{Vectors:}
+\begin{itemize}
+\item
+Pair
+$\begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$
+can be a movement of the plane: every point
+$P=\begin{pmatrix}p_1 \\ p_2\end{pmatrix}$
+is shifted to
+$P'=\begin{pmatrix}p_1+v_1 \\ p_2+v_2\end{pmatrix}$
+\item Uppercase letters are used for points and lowercase with arrows for vectors.
+\item A vector has length
+$|\vec{v}|=\sqrt{(v_1)^2 + (v_2)^2}$
+which is the distance each point travels under the movement described by $\vec{v}$.
+\item A Vector of length 1 is a Unit Vector.
+\item $\vec{0}=\begin{pmatrix}0\\0\end{pmatrix}$ is the null vector.
+\item $\vec{v}/|\vec{v}|$ is the unit vector pointing in the same direction as $\vec{v}$.
+\item The vector $\vec{PQ}$ that moves point P into point Q has coordinates (q1-p1, q2-p2).
+\item All points X that can be reached from P by following some distance along the direction of $\vec{v}$ lie on the straight line $X = P + (s \cdot v)$.
+\item This is a parametric representation of a line where the parameter is s.
+\item If given two points P and Q in the plane then this defines a straight line $X = P + (s \cdot PQ)$.
+\item If given two lines $X = P + (s \cdot v)$ and $Y = Q + (t\cdot w)$ their point of intersection satisfies $p1 + sv1 = q1 + tw1$ and $p2 + sv2 = q2 + tw2$. This can be solved using Gaussian Elimination.
+\end{itemize}
+
+\section{Geometry in 3 Dimensions}
+
+\paragraph{Planes}
+The parametric representation of a plane has the form $X=P+s\cdot \vec{v}+t\cdot \vec{w}$ where P is a point in space and $\vec{v}$ and $\vec{w}$ are vectors (neither of which are null). $\vec{w}$ must not point in the same (or opposite) direction as $\vec{v}$, otherwise it is just a line.
+\vspace{1mm}\\
+Three points P, Q and R which are not all on the same line determine a plane $X=P+s\cdot \vec{PQ}+t\cdot \vec{PR}$.
+
+\paragraph{Intersection Tasks}
+\begin{itemize}
+\item \textbf{Test whether a point lies on a line or plane} For point Q: $X = P + (s \cdot v)$ therefore $P + (s \cdot v) = Q$.
+\item \textbf{Find the intersection point between lines/planes} Simply set the two equations as equal to each other.
+\end{itemize}
+Solve using Gaussian Elimination.
+
+\paragraph{Two-point description of a line} Two points P and Q determine a line
+$$X = P + s\cdot \vec{PQ}$$
+This can be rewritten as
+\begin{align*}
+X &= P+s\cdot (Q-P)\\
+&= P + s\cdot Q-s\cdot P\\
+&= (1-s)\cdot P+s\cdot Q
+\end{align*}
+This can also be done with a plane using 3 points.
+
+\paragraph{Vector spaces}
+So we have a null vector, we can add two vectors, and we can multiply vectors with a scalar.
+Any structure that satisfies the laws of vector algebra and carries these two operations is called a \textbf{vector space}.
+\vspace{1mm}\\
+The idea of a vector space is more complex than just 3-dimensional movements. Scalars can come from any field $\mathbb{F}$. We will call one theoretical field $GF(2)$. One then speaks of a ``vector space over $\mathbb{F}$''.
+
+\paragraph{Subspaces}
+If $\vec{v}$ is an element of some vector space then we can generate a \textbf{subspace} (a \textbf{sub-vector space}) by considering all vectors of the form $s\cdot \vec{v}$. Another subspace would be all expressions of the form $s\cdot \vec{v} + t\cdot \vec{w}$.
+\vspace{1mm}\\
+Another way of looking at parametric representations is that we pick a point and allow all movements from a subspace to act on this point. This leads to an \textbf{affine subspace}. In other words, lines and planes are affine subspaces of 2D/3D.
+
+\paragraph{Bases}
+If two generators point in the same direction then one of them is redundant and can be removed. A set of generators that includes a redundant generator is said to be \textbf{linearly dependent}. A set of generators that can not be made any smaller is a \textbf{basis} of the subspace. The number of elements of a basis is the \textbf{dimension} of the subspace.
+\vspace{1mm}\\
+If we start with some set of generators and we are not sure if any of them are redundant, we can write the vectors as rows into a matrix and run Gaussian elimination. The rows of the resulting echelon form will be a basis for the subspace. Any redundancy will show itself as rows consisting entirely of zeros.
+
+\paragraph{Codes}
+Subspaces in $GF(2)^n$ are used as linear \textbf{codes} in coding theory. This is coding to spot and correct errors in data, not programming or cryptography.
+
+\end{document}
