@@ -2,6 +2,7 @@
 
 \title{Mathematical Techniques for Computer Science - Notes}
 \author{Harvey Hyatt}
+\date{}
 
 \usepackage[a4paper, total={7in, 10in}]{geometry}
 \usepackage{amsmath}
@@ -9,6 +10,83 @@
 
 \begin{document}
 \maketitle
+
+\section{Gaussian Elimination}
+Gaussian Elimination is a recursive algorithm - it has a base case and a general case:
+\begin{description}
+\item[Base Case]
+There is only one equation and one unknown: $ax=b$. This can be solved as $x=\frac{b}{a}$.
+\item [General Case]
+There are $n$ equations and each contains $n$ unknowns. We use the first equation to eliminate the first unknown in the other $n-1$ equations. Apply the algorithm recursively to these $n-1$ equations.
+\end{description}
+This should lead to a staircase pattern of zeros.
+$$\begin{pmatrix}
+\bullet & * & * & * \\
+0 & \bullet & * & * \\
+0 & 0 & \bullet & * \\
+0 & 0 & 0 & \bullet
+\end{pmatrix}$$
+The term for this is \textbf{echelon form}.
+
+\section{Gaussian Elimination: Special Cases}
+These are all to do with zeros appearing in the ``wrong place''.
+\paragraph{Contradictory equation}
+If, in the base case $ax=b$, $a=0$ and $b\neq 0$, then the equation is contradictory since $0=b$. In this case there is \textit{no solution}.
+
+\paragraph{Irrelevant equation}
+This is like the last case but this time both sides are zero, i.e. the equation reduces to $0=0$. This means that the value of x can be \textbf{chosen freely}.
+
+\paragraph{Can't use the first equation to eliminate the first unknown}
+If the coefficient of the first unknown in the first equation is zero, then the first variable of the other equations cannot be eliminated.
+\vspace{1mm}\\
+The solution is to exchange the first equation with another equation where the first coefficient is not zero, and run the algorithm on this rearranged matrix. If the calculation is being done by a human, we would like the coefficient to be as close to 1 as possible.
+
+\paragraph{Can't use any of the equations to eliminate the first unknown}
+Similar to the previous case, this means that the first variable is not constrained at all and can be chosen freely. However, this creates a system where we have \textit{two equations} for \textit{one unknown}. We have to consider more general systems of linear equations.
+
+\paragraph{General Gaussian elimination}
+The General Case stays the same - we only need to reconsider the base case.
+\begin{description}
+\item [Base Case 1] There are multiple equations but only one unknown left. Solve each equation independantly and compare the answers: if all the same, then that is the solution. If they disagree, then the system has no solution.
+\item [Base Case 2] There are multiple (say $m$ many) unknowns but only one equation left. In this case $m-1$ unknowns can be chosen freely and the other one is computed from the equation.
+\end{description}
+
+\paragraph{Special cases in Echelon form}
+Suppose after performing Gaussian elimination we end up with this matrix:
+$$\begin{pmatrix}
+  0 & \bullet & * & * & * & * \\
+  0 & 0 & 0 & \bullet & * & * \\
+  0 & 0 & 0 & 0 & \bullet & * \\
+  0 & 0 & 0 & 0 & 0 & ? \\
+  0 & 0 & 0 & 0 & 0 & 0
+\end{pmatrix}$$
+Here the bullets represent non-zero numbers and the asterisks represent arbitrary numbers. If the question mark is non-zero, there is no solution (since we have contradictory equations). If it is zero, then we have infinitely many solutions, since some variables can be chosen freely. The ones that can be chosen freely are the ones where the staircase does not drop down one level (in this case $x_1$ and $x_3$). The value of certain other variables will depend on what is chosen for $x_1$ and $x_3$.
+
+\paragraph{Fields}
+There are many \textit{number systems} (also known as \textbf{fields}) that can take the place of rational (or real) numbers. The requirements of a field are:
+\begin{itemize}
+\item Elements of the field can be added and multiplied.
+\item There is a ``zero'' and a ``one'', which we write as 0 and 1.
+\end{itemize}
+Therefore the following two equations must be satisfied:
+\begin{gather*}
+x+0=x\\
+x*1=x
+\end{gather*}
+All the usual rules of arithmetic must be valid:
+%TODO
+\begin{align*}
+x+y&=y+x & x*y&=y*x & x*(y+z)&=x*y+x*z\\
+x+(y+z)&=(x+y)+z & x*(y*z)&=(x*y)*z
+\end{align*}
+Finally, the following equations must be able to be solved:
+\begin{gather*}
+a + x = 0\\
+a*x=1 \text{ assuming } a\neq 0
+\end{gather*}
+
+\paragraph{An example of a finite field}
+A useful \textbf{finite field} is $GF(2)$. It has two elements, zero and one. Addition and multiplication is like usual, except that $1+1=0$.
 
 \section{Analytical Geometry in the Plane}
 
@@ -71,7 +149,7 @@ This can also be done with a plane using 3 points.
 So we have a null vector, we can add two vectors, and we can multiply vectors with a scalar.
 Any structure that satisfies the laws of vector algebra and carries these two operations is called a \textbf{vector space}.
 \vspace{1mm}\\
-The idea of a vector space is more complex than just 3-dimensional movements. Scalars can come from any field $\mathbb{F}$. We will call one theoretical field $GF(2)$. One then speaks of a ``vector space over $\mathbb{F}$''.
+The idea of a vector space is more complex than just 3-dimensional movements. Scalars can come from any field $\mathbb{F}$, for example $GF(2)$. One then speaks of a ``vector space over $\mathbb{F}$''.
 
 \paragraph{Subspaces}
 If $\vec{v}$ is an element of some vector space then we can generate a \textbf{subspace} (a \textbf{sub-vector space}) by considering all vectors of the form $s\cdot \vec{v}$. Another subspace would be all expressions of the form $s\cdot \vec{v} + t\cdot \vec{w}$.
@@ -85,5 +163,65 @@ If we start with some set of generators and we are not sure if any of them are r
 
 \paragraph{Codes}
 Subspaces in $GF(2)^n$ are used as linear \textbf{codes} in coding theory. This is coding to spot and correct errors in data, not programming or cryptography.
+
+\section{Vector Form}
+\paragraph{A line from a linear equation}
+The linear equation
+$$x_1-2x_2=3$$
+has the solutions
+\begin{center}
+\begin{tabular}{r c l}
+$x_2$ & : & choose freely\\
+$x_1$ & = & $3+2x_2$
+\end{tabular}
+\end{center}
+This can be written in vector form as:
+$$X=\begin{pmatrix}x_1 \\ x_2\end{pmatrix}
+= \begin{pmatrix}3+2x_2 \\ x_2\end{pmatrix}
+= \begin{pmatrix}3 \\ 0\end{pmatrix}
++ x_2\cdot \begin{pmatrix}2 \\ 1\end{pmatrix}$$
+and we see that all solutions lie on a line.
+
+\paragraph{Intersection tasks}
+...become a lot easier when using vector form. For example, intersecting a line with a plane:
+\begin{center}
+\begin{tabular}{r l}
+line: & $X=\begin{pmatrix}2\\1\\1\end{pmatrix}+s\cdot \begin{pmatrix}1\\0\\-3\end{pmatrix}$\\
+plane: & $x_1-2x_2+3x_3=5$
+\end{tabular}
+\end{center}
+To solve just substitute the line into the equation of the plane.
+$$[2+s]-2[1]+3[1-3s]=5$$
+It is much simpler to solve because a parametric representation \textit{generates points} whilst an equation \textit{tests points}.
+
+\paragraph{Translating from parametric to equational}
+\begin{description}
+\item [Lines] If we are given the parametric representation of a line in 2D
+$$X=P+s\cdot \vec{v}=\begin{pmatrix}p_1\\p_2\end{pmatrix}+s\cdot \begin{pmatrix}v_1\\v_2\end{pmatrix}$$
+and we are looking for an equation
+$$ax_1+bx_2=d$$
+then we just need to set
+\begin{center}
+\begin{tabular}{r c l}
+$a$ & $=$ & $-v_2$\\
+$b$ & $=$ & $v_1$\\
+$d$ & $=$ & $ap_1+bp_2$
+\end{tabular}
+\end{center}
+
+\item [Planes] If we are given the parametric representation of a plane in 3D
+$$X=P+s\cdot \vec{v}+t\cdot \vec{w}=\begin{pmatrix}p_1\\p_2\\p_3\end{pmatrix}+s\cdot \begin{pmatrix}v_1\\v_2\\v_3\end{pmatrix}+t\cdot \begin{pmatrix}w_1\\w_2\\w_3\end{pmatrix}$$
+and we are looking for an equation
+$$ax_1+bx_2+cx_3=d$$
+then we just need to set
+\begin{center}
+\begin{tabular}{r c l}
+$a$ & $=$ & $v_2w_3-v_3w_2$\\
+$b$ & $=$ & $v_3w_1-v_1w_3$\\
+$c$ & $=$ & $v_1w_2-v_2w_1$\\
+$d$ & $=$ & $ap_1+bp_2+cp$
+\end{tabular}
+\end{center}
+\end{description}
 
 \end{document}
