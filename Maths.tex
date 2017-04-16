@@ -224,4 +224,54 @@ $d$ & $=$ & $ap_1+bp_2+cp$
 \end{center}
 \end{description}
 
+\section{The Inner Product}
+\paragraph{Geometric interpretations}
+Given a linear equation
+$$ax_1+bx_2+cx_3=d$$
+we assemble the coefficients in a vector
+$$\vec{n}=\begin{pmatrix}a\\b\\c\end{pmatrix}$$
+This vector is orthogonal to the plane. This is called the \textbf{normal} to the plane.
+\vspace{1mm}\\
+The right-hand side $d$ of the equation is negative if the origin is on the same side of the plane as the normal, and positive otherwise. The distance of the origin from the plane is given by
+$$\text{distance}=\frac{d}{|\vec{n}|}$$
+where $|\vec{n}|=\sqrt{a^2+b^2+c^2}$.
+Since the normal can easily be computed from equations of the form $ax_1+bx_2+cx_3=d$, this is called the \textit{normal form}.
+
+\paragraph{Inner Product}
+The expression $ax_1+bx_2+cx_3$ can be viewed as the \textbf{inner product} of two tuples $\vec{n}=\begin{pmatrix}a\\b\\c\end{pmatrix}$ and $X=\begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix}$. This is denoted by $\langle\vec{n},X\rangle$. It is also known as the \textbf{dot product} ($\vec{n}\cdot X$).
+\vspace{1mm}\\
+The following laws apply:
+\begin{align*}
+  \langle\vec{v},\vec{w}\rangle&=\langle\vec{w},\vec{v}\rangle\\
+  \langle\vec{v}+\vec{w},\vec{x}\rangle&=\langle\vec{v},\vec{x}\rangle+\langle\vec{w},\vec{x}\rangle\\
+  \langle s\cdot\vec{v},\vec{w}\rangle&=s\times \langle\vec{v},\vec{w}\rangle
+\end{align*}
+If you know the normal to a plane and a point P on it, the normal form can be written as
+$$\langle\vec{n},X\rangle=\langle\vec{n},P\rangle$$
+
+\paragraph{Geometric properties}
+\begin{description}
+\item [Orthognality] Two vectors $\vec{v}$ and $\vec{w}$ are perpendicular if $\langle\vec{v},\vec{w}\rangle=0$.
+\item[Angles] $\langle\vec{v},\vec{w}\rangle=|\vec{v}|\times|\vec{w}|\times cos(\alpha)$ where $\alpha$ is the angle between $\vec{v}$ and $\vec{w}$. $\langle\vec{v},\vec{w}\rangle$ is positive if the angle is acute and negative if the angle is obtuse.
+\item [Length] $|\vec{v}|^2=\langle\vec{v},\vec{v}\rangle$
+\item [Projection] We can compute the \textbf{orthogonal projection} of $\vec{v}$ onto the line defined by $\vec{w}$ by computing
+$$\frac{\langle\vec{v},\vec{w}\rangle}{\langle\vec{w},\vec{w}\rangle}\cdot\vec{w}$$
+which is the same as
+$$\left\langle\vec{v},\frac{\vec{w}}{|\vec{w}|}\right\rangle\cdot\frac{\vec{w}}{|\vec{w}|}$$
+\end{description}
+
+\paragraph{Graphics-related tasks}
+\begin{description}
+\item [Computing the distance from a plane] If $E$ is a plane $\langle\vec{n},X\rangle =d$ and Q is a point then the distance $Q$ to $E$ (measured in the direction of the normal) is given by
+$$\frac{d-\langle\vec{n},Q\rangle}{|\vec{n}|}=\frac{\langle\vec{n},P\rangle -\langle\vec{n},Q\rangle}{|\vec{n}|}$$
+If this returns 0 then $Q$ is a point in the plane. If the result is negative then the normal is pointing towards the side that $Q$ is on.
+\item [Nearest neighbour] To find which point on $E$ is closest to $Q$ we move from $Q$ to $E$ in the direction of the normal.
+$$Q'=Q+\frac{d-\langle\vec{n},Q\rangle}{\langle\vec{n},\vec{n}\rangle}\cdot\vec{n}$$
+If the plane goes through the origin then $d=0$ and the formula simplifies to
+$Q'=Q-\frac{\langle\vec{n},Q\rangle}{\langle\vec{n},\vec{n}\rangle}\cdot\vec{n}$.
+\item [Reflecting a point at a plane] Similar to the previous task, but we go twice the distance.
+$$Q'=Q+2\times\frac{d-\langle\vec{n},Q\rangle}{\langle\vec{n},\vec{n}\rangle}\cdot\vec{n}$$
+\item [Reflecting a line at a plane] Pick two different points on the line and reflect them according to the previous formula. Then plug them into the parametric formula given in section 4.
+\end{description}
+
 \end{document}

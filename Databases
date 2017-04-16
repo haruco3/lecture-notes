@@ -1,0 +1,151 @@
+DB models:
+- Network/graph model
+- Hierarchical model
+- Relational model
+
+Relational databases are the standard choice
+Other technologies may be better if speed/power consumption/scale are issues
+
+Database - an organised collection of data
+
+Desirable properties:
+- Data independence
+- Minimise redundancy
+- Consistant
+
+ACID:
+Atomicity - transaction completes or does not happen at all
+Consistency - always in a consistent state according to rules
+Isolation - two operations happening in parallel has the same effect as them happening sequentially
+Durability - Once something is stored it won't be lost
+
+ANSI/SPARC DB Architecture
+Top level: view (external model) - subset of conceptual model
+Middle level: conceptual model - independent of implementation
+Bottom level: actual implementation
+
+Relational Definitions:
+Domain - set of atomic values
+Attribute name - Symbol with associated domain (Column/Field)
+Relational Schema - set of attribute names
+Tuple of Relational Schema - Mapping of attributes of a relational schema to the union of their domains (Row/Record)
+Relation - set of tuples (Table)
+Degree (Arity) - Number of attributes
+Cardinality of a Relation - Number of tuples
+
+Keys:
+Superkey - set of attributes that can \textit{always} differentiate one tuple from another
+Key - minimal superkey
+Concatenated key - key with more than one attribute
+Candidate key - any key
+Primary key - one of the candidate keys
+Foreign key - an attribute of the relation which is a key for another relation
+
+SQL Conventions:
+- SQL Keywords in upper case
+- Table names capitalised
+- Field names lower case
+
+DDL - Data Definition Language:
+
+Create:
+CREATE TABLE <table name> (
+	<field name>	<field type>	<constraints>
+	PRIMARY KEY (<field name>)
+	FOREIGN KEY (<field name>) REFERENCES <table name>(<field name>)
+);
+Constraints:
+NOT NULL
+UNIQUE
+
+DROP:
+DROP TABLE <table name>
+ALTER TABLE <table name>
+	ADD COLUMN <field name>	<field type>
+
+Types:
+BOOLEAN
+CHAR(size)
+VARCHAR
+INTEGER
+REAL/FLOAT/DOUBLE
+DECIMAL
+DATE
+TIME
+
+Primary Key:
+- Enforces UNIQUE and NOT NULL
+- Can be any key
+
+Foreign Key:
+- Defines a link to another table
+- For any row inserted, the foreign key must be matched by a key in the other table
+ON DELETE RESTRICT/NO ACTION: Forbids operation (no action tests after action)
+ON DELETE CASCADE: Delete rows that reference the deleted key
+
+Constraints:
+CHECK (age >=0 AND age <=120): (for example)
+
+DML - Data Manipulation Language
+
+INSERT:
+INSERT INTO <table> VALUES
+	(var1, var2, var3);
+INSERT INTO
+	<table>(column1, column2)
+	VALUES (var1, var2);
+
+UPDATE:
+UPDATE <table>
+	SET column='var1'
+	WHERE column2='var2';
+
+DELETE:
+DELETE FROM <table>
+	WHERE column=var;
+
+SELECT:
+SELECT column1, column2
+	FROM <table>
+	WHERE column3=value;
+SELECT DISTINCT: remove duplicate rows
+ORDER BY column1, column2 ASC/DESC
+WHERE: IS [NOT] NULl, [NOT] IN, [NOT] BETWEEN
+
+Joins:
+SELECT table1.column, table2.column2, table2.column3
+	FROM table1, table2
+	WHERE table1.column=table2.column2;
+or
+	FROM table1
+	INNER JOIN table2
+	ON table1.column=table2.column2;
+or	USING(column)
+uses cross product
+LEFT JOIN: Includes rows in left table that are not matched
+RIGHT JOIN: vice-versa
+FULL JOIN: includes rows in both tables that are not matched
+EQUI JOIN: like inner join where condition only includes equality
+UNION: connects two queries
+Sub-queries: ALL/ANY (subquery)
+
+GROUP BY specifies grouping of rows
+HAVING specifies selection criteria for groups
+
+JDBC: Mechanism for connection to database systems
+Transactions:
+Some compound operations must be performed as though they were atomic
+Transactions handle problems that arise if the server crashes in the middle of a compound operation
+Implements mechanisms that ensure ACID properties
+Needed for concurrent access and robustness
+- Each transaction maintains its own copy of the database
+- If transaction is successful, changes are committed in original database
+- If unsuccessful, changes are rolled back
+- Failure could be due to conflict with other transactions or deadlock detection
+Two methods of handling:
+- Optimistic: Assume there won't be a problem and if there is fix it
+	e.g. detect if data has changed since reading and repeat transaction
+- Pessimistic: Assume there will be a conflict and prevent it happening
+	e.g. lock parts of database until transaction committed
+Transactions come with a performance overhead - turn them off if not needed
+Batch updates will be quicker than individual ones	
