@@ -274,4 +274,26 @@ $$Q'=Q+2\times\frac{d-\langle\vec{n},Q\rangle}{\langle\vec{n},\vec{n}\rangle}\cd
 \item [Reflecting a line at a plane] Pick two different points on the line and reflect them according to the previous formula. Then plug them into the parametric formula given in section 4.
 \end{description}
 
+\paragraph{Higher dimensions} To represent a ``normal form'' for a line in 3D, we use two equations. The line of interest is the intersection of the two planes given by those equations. More generally, to represent an $m$-dimensional object in $d$-dimensional space, we can either use a parametric representation with $m$ non-redundant variables, or an equational representation with $d-m$ equations. Translating from one representation to the other is done through our old friend guassian elimination.
+
+\paragraph{Normal forms and finite fields} We can represent subspaces in parametric form or equational form regardless of the underlying field.
+\vspace{1mm}\\
+One application of this is \textit{error-correcting codes}. We use a parametric representation to generate code words from data vectors, then use the equational representation to check whether a word recieved is valid. In this case the parametric form is called the \textit{generator matrix} and the equational form the \textit{check matrix}.
+\vspace{1mm}\\
+In order to use the notion of ``distance'', a field needs the following properties:
+\begin{center}
+\begin{tabular}{r c l}
+$\langle\vec{v},\vec{v}\rangle$ & $\geq$ & 0\\
+$\langle\vec{v},\vec{v}\rangle=0$ & $\implies$ & $\vec{v}=\vec{0}$
+\end{tabular}
+\end{center}
+Notice that the second property does not hold on GF(2).
+$$\left\langle\begin{pmatrix}1\\1\end{pmatrix},\begin{pmatrix}1\\1\end{pmatrix}\right\rangle=1\times 1+1\times 1=1+1=0$$
+Therefore there is no notion of distance in GF(2).
+
+\section{Exam Formulas to Remember}
+\begin{itemize}
+\item Inner product of two vectors (section 6)
+\end{itemize}
+
 \end{document}
