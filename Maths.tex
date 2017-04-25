@@ -73,8 +73,6 @@ Therefore the following two equations must be satisfied:
 x+0=x\\
 x*1=x
 \end{gather*}
-All the usual rules of arithmetic must be valid:
-%TODO
 \begin{align*}
 x+y&=y+x & x*y&=y*x & x*(y+z)&=x*y+x*z\\
 x+(y+z)&=(x+y)+z & x*(y*z)&=(x*y)*z
@@ -290,6 +288,68 @@ $\langle\vec{v},\vec{v}\rangle=0$ & $\implies$ & $\vec{v}=\vec{0}$
 Notice that the second property does not hold on GF(2).
 $$\left\langle\begin{pmatrix}1\\1\end{pmatrix},\begin{pmatrix}1\\1\end{pmatrix}\right\rangle=1\times 1+1\times 1=1+1=0$$
 Therefore there is no notion of distance in GF(2).
+
+\section{Matrices}
+\paragraph{Uses of matrices} A matrix is a rectangular arrangement of numbers. The \textbf{dimension} of a matrix gives the number of rows and columns. For example, the dimension of a matrix with 2 rows and 3 columns is $2\times 3$. (This is not an equation - the dimension is not 6).
+\vspace{1mm}\\
+Any number $\geq 1$ is allowed for the number of rows and columns in a matrix. A $1\times 1$ matrix is just a number, a $1\times 3$ matrix is just a vector, and a $3\times 1$ matrix is just a vector written as a column. A matrix is \textbf{square} if the number of rows equals the number of columns.
+\vspace{1mm}\\
+A \textbf{stochastic matrix} is a square matrix where the values in each column add up to 1. These can describe the behaviour of a \textbf{Markov chain}, a system that changes state probabilistically. Matrices can also describe linear transformations (see Graphics module).
+
+\paragraph{Notation} Matrices are denoted by capital letters ($A$, $B$ etc.), while entries in a matrix are denoted $a_{ij}$, where $i$ is the row number and $j$ is the column number. Unlike most programming languages, indexing starts at 1.
+
+\paragraph{Vector space operations} Matrices are compared \textit{componentwise}. This means that two matrices are equal only if they agree in their dimensions and in each position. Scalar multiplication (multiplying a matrix by a number) is done in the same way as on vectors.
+
+\paragraph{Laws for matrix operations}
+%TODO
+
+\paragraph{Matrix multiplication} The result of multiplying an $m\times n$ matrix $A$ with an $n\times p$ matrix $B$ is an $m\times p$ matrix $C$ whose entry $c_{ik}$ in row $i$ and column $k$ is computed as
+$$c_{ik}=\sum{n}{j=1}a_{ij}b_{jk}=a_{i1}\times b_{1k}+a_{i2}\times b_{2k}+...+a_{in}\times b_{nk}$$
+In words, to compute the entry of matrix $C$ in row $i$ and column $k$, compute the inner product of the $i$th row of $A$ with the $k$th column of $B$. Clearly the width of the first matrix must equal the height of the second matrix if we want to multiply the two. It follows that multiplication of matrices is (usually) not commutative.
+$$AB\neq BA$$
+
+\paragraph{The Identity matrix} Every dimension $n\times n$ has its own version of the \textbf{identity matrix}. The $3\times 3$ matrix looks like this:
+$$\begin{pmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{pmatrix}$$
+
+\paragraph{The laws of matrix multiplication}
+\begin{align*}
+(AB)C&=A(BC)\\
+A(B+C)&=AB+AC\\
+(A+B)C&=AC+BC\\
+AE&=EA=A\\
+A0&=0A=0\\
+s\cdot (AB)&=(s\cdot A)B=A(s\cdot B)
+\end{align*}
+
+\section{Invertibility of Matrices}
+For every matrix $A$ there is almost always an inverse matrix $A^{-1}$. This matrix satisfies $A^{-1}A=E$ and $AA^{-1}=E$.
+\vspace{1mm}\\
+%TODO: Example
+To compute the inverse of matrix $A$ we just use Guassian elimination to solve the equation $AA^{-1}=E$. Some matrices cannot be inverted (for example the zero matrix).
+\vspace{1mm}\\
+For $2\times 2$ matrices there is a simple formula for the inverse matrix.
+$$\text{If }A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\text{ then }A^{-1}=\frac{1}{ad-bc}\cdot\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$$
+
+\section{Sets}
+A set is a collection of things. These ``things'' can be people, colours, or PDF lecture notes. They are known as \textbf{elements} or \textbf{members}. There is usually a shared attribute involved.
+
+\paragraph{Rules of Sets}
+\begin{itemize}
+\item The elements of a set must be identifiable and distinguishable from each other. ``Dust in my room'' is not a set.
+\item There must be a clear criteria that distinguishes ``things in the set'' from ``things not in the set''.
+\item A member of a set is counted only once.
+\item The elements of a set are not ordered.
+\item A set is defined by which members it has and nothing else.
+\end{itemize}
+
+\paragraph{Notation} $x\in A$ indicates that $x$ is an element of $A$. Sets can also be written explicitly, e.g. \{1, 2, 3, 4, 5\} or \{1, 4, 9, 16, 25, ...\}.
+
+\paragraph{New sets from old}
+\begin{description}
+\item [Pairing] The elements of the set $A\times B$ are pairs $(x,y)$ where $x$ is an element of $A$ and $y$ is an element of $B$. If both sets are equal ($A\times A$) we can call this $A^2$.
+\item [Finite sequences] $A^*$ is the set whose elements are finite sequences of elements of $A$. For example, if set $A$ is an alphabet, then $A^*$ contains the words you can make with the elements of $A$. $\Sigma$ (capital sigma) is often used to denote alphabets. $A^*$ also contains the \textit{empty sequence}, often denoted by $\epsilon$ (epsilon).
+\item [Subsets]
+\end{description}
 
 \section{Exam Formulas to Remember}
 \begin{itemize}
