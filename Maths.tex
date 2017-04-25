@@ -7,6 +7,7 @@
 \usepackage[a4paper, total={7in, 10in}]{geometry}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{mathrsfs}
 
 \begin{document}
 \maketitle
@@ -348,8 +349,41 @@ A set is a collection of things. These ``things'' can be people, colours, or PDF
 \begin{description}
 \item [Pairing] The elements of the set $A\times B$ are pairs $(x,y)$ where $x$ is an element of $A$ and $y$ is an element of $B$. If both sets are equal ($A\times A$) we can call this $A^2$.
 \item [Finite sequences] $A^*$ is the set whose elements are finite sequences of elements of $A$. For example, if set $A$ is an alphabet, then $A^*$ contains the words you can make with the elements of $A$. $\Sigma$ (capital sigma) is often used to denote alphabets. $A^*$ also contains the \textit{empty sequence}, often denoted by $\epsilon$ (epsilon).
-\item [Subsets]
+\item [Subsets] If we have a set $A$ then we can create a set $B$ that consists of some elements from $A$. We can call this a \textbf{subset} of $A$. $B$ is a subset of $A$ only if all of the elements in $B$ can be found in $A$.
+\vspace{2mm}\\
+\textbf{Subset notation:}
+$$B=\{x\in A\; |\; x\text{ satisfies condition } c\}$$
+``$B$ is the set of all elements of $A$ for which condition $c$ is true.''
+\vspace{2mm}\\
+To indicate that one set is a subset of another, we use the symbol $\subseteq$.
+$$B\subseteq A$$
+Whatever the set $A$ is, we can always form two standard subsets:
+\begin{gather*}
+\{x\in A\; |\; true\}\\
+\{x\in A\; |\; false\}
+\end{gather*}
+The first is equal to $A$, and the second is the \textbf{empty set} ($\emptyset$ or \{\}).
+\vspace{2mm}\\
+\textbf{Set definitions:}
+\begin{gather*}
+B\subseteq A\; \text{iff (if and only if)}\; \forall x.\: x\in B\implies x\in A\\
+A=B\; \text{iff}\; A\subseteq B\; \text{and}\; B\subseteq A
+\end{gather*}
 \end{description}
+
+\paragraph{Operations on subsets} Suppose $B$, $B_1$ and $B_2$ are subsets of a set $A$.
+\begin{description}
+\item [Union] The union of $B_1$ and $B_2$ is the combination of all elements from both sets. If an element is in both sets, it still only appears in the union once.
+$$B_1 \cup B_2 = \{x\in A\; |\; x\in B_1\; \text{or}\; x\in B_2\}$$
+\item [Intersection] The intersection of $B_1$ and $B_2$ is the set of elements that are in both $B_1$ and $B_2$.
+$$B_1 \cap B_2 = \{x\in A\; |\; x\in B_1\; \text{and}\; x\in B_2\}$$
+\item [Complement] The complement of $B$ is the set of elements that are in $A$ but \textit{not} in $B$.
+$$\overline{B}=\{x\in A\; |\; x\notin B\}$$
+\item [Difference] The difference of $B_1$ and $B_2$ is the set of elements that are in $B_1$ but not in $B_2$. (Note this is not the same as the \textit{compliment} since that compares a set to the alphabet)
+$$B_1 \backslash B_2=B_1 \cup \overline{B_2}=\{ x\in A\; |\; x\in B_1\; \text{but}\; x\notin B_2$$
+\end{description}
+
+\paragraph{Power sets} The power set of $A$ ($\mathscr{P} A$) is the set of all sets that are subsets of $A$.
 
 \section{Exam Formulas to Remember}
 \begin{itemize}
