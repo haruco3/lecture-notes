@@ -388,8 +388,19 @@ $$B_1 \backslash B_2=B_1 \cup \overline{B_2}=\{ x\in A\; |\; x\in B_1\; \text{bu
 \section{Cardinalty: Countable and Uncountable sets}
 \paragraph{Counting the elements of a set} The number of elements in a set is called the \textbf{Cardinality}. If set $A$ has four elements we can write this as
 $$|A|=4\quad \text{or}\quad \text{card}(A)=4$$
+
 \paragraph{Cardinality of infinite sets} Since the sets $\mathbb{N}$ (natural numbers), $\mathbb{Z}$ (integers), $\mathbb{Q}$ (rational numbers) and $\mathbb{R}$ (real numbers) are infinite, therefore it appears that their cardinality is ``infinity.'' However, this is not correct.
 \vspace{1mm}\\
-First consider the set of natural numbers $\mathbb{N}$. We call a set \textbf{countably infinite} if it has the same cardinality as $\mathbb{N}$.
+First consider the set of natural numbers $\mathbb{N}$. We call a set \textbf{countable} or \textbf{countably infinite} if it has the same cardinality as $\mathbb{N}$. We can prove that $\mathbb{Z}$ is countable by pairing each number in $\mathbb{Z}$ to a number in $\mathbb{N}$. For example:
+$$(\mathbb{N,Z})=\{(0,0),(1,1),(2,-1),(3,2),(4,-2),...\}$$
+We can also prove that $\mathbb{N}^2$ is countable:
+$$(\mathbb{N,N}^2)=\{(0,(0,0)),(1,(1,0)),(2,(0,1)),(3,(2,0)),(4,(1,1)),(5,(0,2)),...\}$$
+If $\Sigma$ is a finite alphabet, then the infinite set of words $\Sigma^*$ is countable (imagine walking breadth-first through a tree and pairing $\mathbb{N}$ with the values in the tree). The set of valid Java programs is therefore also countable.
+\vspace{1mm}\\
+The set of real numbers is uncountable. Therefore there must exist non-computable real numbers.
+
+\paragraph{Powersets again} The powerset of $\mathbb{N}$ is uncountable. A powerset always has more elements than the set itself. Therefore, the sets in the sequence
+$$\mathbb{N}\quad \mathscr{P}\mathbb{N}\quad \mathscr{PP}\mathbb{N}\quad \mathscr{PPP}\mathbb{N}$$
+have greater and greater cardinality. It's infinitely infinite!
 
 \end{document}
