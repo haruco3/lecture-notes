@@ -1,0 +1,22 @@
+OS provides uniform view of devices/information storage
+Mediums such as CD, floppy disk etc. handled by device (access speed etc.)
+OS handles mapping files within memory onto secondary storage
+Linux: /dev - devices
+I/O subsystem responsible for preventing jobs from overlapping
+HDD drivers are standardized to prevent data loss, drivers for other devices are more diverse
+
+Protection - controlling access of process or users to OS resources
+Security - defense of the system against internal and external attacks
+
+Processes interact by making System Calls to the OS (kernel)
+- Program Execution: OS loads a program into memory and runs it, dealing with any errors, and cleaning up after the program has finished running
+- I/O Operation
+- File-system manipulation: Programs need to read and write to files and directories, OS handles data access and permission management
+- Interprocess Communication: Allowing processes to share data through message passing or shared memory
+Implementation may change from kernel to kernel, hence standardized System Calls (API) is needed
+
+Internal services (available only to the OS)
+- Error Handling: Device failure, program tries to divide by zero or access protected memory
+- Resource Allocation: Handling processes competing for CPU, memory and I/O access
+- Accounting: How much disk space is a user using, how much network bandwidth etc.
+- Protection and Security
