@@ -1,6 +1,8 @@
 # lecture-notes
 Notes for revision.
 
-[Maths (Incomplete)](Maths.pdf)
+[Operating Systems](operating-systems/operating-systems.pdf
+
+[Maths](Maths.pdf)
 
 ｓｔａｙ ｓｈａｒｐ！

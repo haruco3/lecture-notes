@@ -1,0 +1,47 @@
+We want to exchange data:
+- In infinite amounts
+- Infinitely quickly
+- With zero error rates
+This isn't possible.
+
+We can characterise a flow of data in terms of:
+- Volume per second (bits per second)
+- Latency (seconds)
+- Error rate (errors per bit)
+with suitably large error bars on these numbers.
+
+Latency:
+Speed of light is a lower bound
+
+Error rate:
+Property of the medium, technology and potential interference
+-Data loss is an error
+Determines how much error checking and correction we can justify.
+
+Different data has different requirements:
+- Voice can accept low bandwidth and high errors but latency is a problem
+- File transfer of OS images is about reliability above everything else
+
+Link bandwidth tends to infinity, but is limited by cost
+Latency is limited by processing times and the speed of light
+Raw error rates remain the same, but with more processing power we can do better error correction
+
+Circuit Switching
+Old telephones - exchanges linked physical wires together to create a direct connection
+Packet Switching
+Divide data into small packets, with information describing the destination
+Packets are delayed until there is room on the line, introducing latency
+
+Netheads v Bellheads
+Bellheads like virtual circuits - they can shape traffic
+Netheads like datagram services - it stops the telco from shaping traffic
+
+Layering
+Applications want guarantees that data will be delivered and don't care about the underlying network
+Network layers or "stack" is a succession of interfaces - top level are services needed by real applications, getting less abstracted further down
+
+OSI - failed European project
+
+
+
+Tube Alloys - British Manhatten project
