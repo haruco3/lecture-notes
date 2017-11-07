@@ -1,0 +1,54 @@
+Filesystems
+
+Disk blocks used for storing directories or recently used files cached in main memory
+Blocks periodically written to disk
++Big efficiency gain
+-Inconsistency when system crashes
+Reason why computers must be shutdown
+
+Define Transaction Points: Points where cache is written to disk -> consistant state
+Keep logfile for each write operation -> log enough information to unravel changes done after last transaction point
+(FAT can't do this)
+
+Disk access:
+Seek - head moves to track
+Latency - correct block is under head
+Transfer - data transfer
+Time necessary for seek and latency >>>> transfer time
+=>distribution of data and scheduling algorithms have vital impact on HDD performance
+
+FCFS: Easiest to implement but may require lots of head movements
+
+Shortest Seek Time First: Select job with minimal head movement
+=>May cause starvation (tracks on outside do not get processed)
+=>Tracks in middle of disk preferred
+=>Does not minimise number of head movements
+
+Lift strategy:
+Process jobs upwards until highest necessary track reached
+Process jobs downwards until lowest necessary track reached
+
+Virtual File System:
+inodes - files and directories
+caches - in particular for directories
+superblocks for file systems
+All system calls (open, read, write, close) got to virtual file system first
+If necessary, virtual file system selects appropriate operation from real file system
+
+Kernel allows for different schedulers for different file systems
+default (completely fair queueing) based on lift strategy
+
+
+OS Security
+
+Data integrity - taken care of by normal OS functions - backup etc.
+Protection against user errors - 'rm -rf /' etc.
+Protection against malicious errors - more complicated, balance between ease of use and level of protection
+
+Typical vulnerbilities:
+User authentication - guess user passwords
+Privilege escalation - limited user->root
+Physical access - replacing OS/bootloader, dump RAM/HDD etc.
+Remote exploit - internet/network access to OS
+
+copy-on-write: share data until one user modifies it
