@@ -1,3 +1,5 @@
+Lecture 2
+
 OS provides uniform view of devices/information storage
 Mediums such as CD, floppy disk etc. handled by device (access speed etc.)
 OS handles mapping files within memory onto secondary storage
@@ -20,3 +22,9 @@ Internal services (available only to the OS)
 - Resource Allocation: Handling processes competing for CPU, memory and I/O access
 - Accounting: How much disk space is a user using, how much network bandwidth etc.
 - Protection and Security
+
+
+Lecture 3
+
+Kernel Architectures
+

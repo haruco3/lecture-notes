@@ -1,0 +1,49 @@
+Repeater - amplifier; collisions seen on both sides
+Bridge receives, buffers and transmits frames, so collisions are not propagated
+Learning/filtering bridges only send frames that belong on the other side
+Ether hubs are repeaters, not bridges. There are collisions when two stations talk.
+
+10BaseT is cheaper and more flexible to install than 10Base2, but no faster
+100BaseT raises speed, switching made it even faster
+1000BaseT (GigE), 10GigE, 40GigE and now 100GigE
+Switch - set of learning bridges in a box
+Each interface is its own collision domain - only two stations on network
+Full Duplex - send and recieve at the same time
+Large buffers internally deal with congestion
+Result: no collisions but increases latency
+
+Cut-through switch does not wait for whole packet to arrive, just header
+Reduces latency but propagates broken packets
+
+Random Early Drop
+Naive method - when buffer fills up, drop packets
+RED throws some packets away as buffer fills up
+Percentage chance of discard increases as free buffer memory decreases
+
+Token Ring/Bus
+Pass a "token" from station to station
+The station that holds the token can transmit, then passes token on when finished
+In theory, offers upper bound for latency. In practice, very hard to get right
+- Token loss/creation
+- Station failure
+FDDI Fibre (100Mbps) - fast and very stable
+
+Slotted Ring - 'slots' circulate around network
+If slot is empty, data is inserted
+Requires minimum length of network, so there are sufficient number of empty slots
+
+ATM: Asynchronous Transfer Mode
+Proposed by Telcos
+Breaks data into stream of 48-byte packets
+Virtual circuits, so only needs 5-byte header
+
+Echo Cancellation
+Brain rejects most echoes (Haas effect)
+Echo comes out of telephone speaker and goes into mic
+Brain can't reject it
+American lines filter echo
+France is smaller and does not require this
+
+ATM switches couldn't handle volume of circuit establishment required
+Solution is "permanent virtual circuit", goes from house to ISP
+

@@ -1,0 +1,28 @@
+Transferring data between kernel and userspace:
+
+/proc - exporting/importing from userspace
+proc_create_file() to create /proc thing
+kernelWrite() reads from the user into kernel
+down_write()/up_write() - locks/unlocks variables for writing
+
+
+File systems:
+
+Logical view - tree structure of files
+Physical view - sequence of blocks
+
+Mapping possibilities:
+Linked list - each block contains pointer to next - random access costly
+Indexed allocation - store pointers in one location (index block - similar to page table) - index block of index blocks when coping with vastly differing file sizes
+FAT (File Allocation Table) - from 70s, designed for small disks
+FAT12, FAT16, FAT32 - number of bits per FAT entry
+Sector = disk unit (e.g. 512 byte), aka block
+Cluster = multiple sectors (factor 1, 2, 4, ..., 128)
+Uses linked list ("Cluster Chain") to group clusters
+
+FAT16 Filesystem structure:
+Boot sector
+Other reserved
+FAT
+Root Directory
+Data

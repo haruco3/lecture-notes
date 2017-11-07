@@ -1,0 +1,45 @@
+LANs, MANs & WANs
+(Local, Metropolitan and Wide)
+Historically WANs have been slow
+There were limitations where you could lay cables in Europe (public right of way etc.)
+LANs were almost entirely proprietary
+WANs - more than a kilometer
+Originally networks designed for file transfer, job transfer, and remote login
+Efficiency is very important when UK-US link is 2.4kb
+Packets need to be as big as possible, otherwise bandwidth is wasted on small data and big header
+
+Packets vs Circuits
+Circuit - direct electrical connection
+
+Packet has addressing information
+Router looks at incoming packets and decides where to send it
+Router complexity scales by number of packets processed
+Virtual circuits - scales by number of unique connections as well as number of packets processed
+
+Connectionless / Datagram
+No guarantee that packets will arrive
+All responsibility for reliability lies with the endpoints
+
+Ethernet
+Takes inspiration from radio networks (Hawaii's AlohaNet)
+Bus - single cable with computers connected
+Max length is 500m, can be amplified to go to 1500m
+Simple packet format
+7 bytes of preamble (0x55) - clock synchronisation
+1 byte start of frame delimiter (0x5d)
+6 byte source address(48 bits)
+6 byte destination address
+CRC - Cyclic redundancy check (GF2)
+
+Checksum - checksum made on the fly, last four bytes are correct checksum
+Wait until network is quiet, then send data
+Collision detection - listens to ether and checks it only contains signals being sent
+Jams network - everyone knows collision is in process
+Minimum packet size - 64, otherwise computer would have finished sending data before collision can be detected
+Recovery - delay by random number x 512 bit periods
+Problems - not stable
+On larger networks, if more than 2 computers try to talk simultaneously, recovery is much more difficult
+Collisions scale exponentially
+
+Dumb bridge - forwards packets to all other connections
+Filtering/learning bridge - learns which side connections are on, both sides can communicate without collision from the other

@@ -1,0 +1,89 @@
+Kernel programs not subject to constraints for memory or hardware access
+Separation of kernel data and user data
+->copy_to_user(), copy_from_user();
+
+reading from disk:
+- kernel loads into buffer in kernel memory, provided by kernel
+- kernel copies into buffer in user memory, prepared by user process
+
+Interrupts:
+Kernel asks HW to perform certain action
+HW sends interrupt to kernel which performs desired action
+interrupts must be processed quickly
+->any code called from interrupts must not sleep
+
+Two main modes for kernel code:
+Process context - kernel code working for user programs executing a system call
+Interrupt context - kernel code handling an interrupts
+
+Concurrency issues:
+Manipulation of data structures which are shared between process code and interrupt code must only happen within critical regions
+Semophores/Mutex: When entering critical section fails, process put to sleep until section available again
+DEFINE_MUTEX(), mutex_lock(), mutex_unlock()
+Spinlocks: Processor tries repeatedly to enter critical section
+As bad as it sounds
+spin_lock_init(), spin_lock(), spin_unlock()
+
+/drivers: device drivers
+/fs: filesystems
+/kernel: scheduling and process management
+/mm: memory management
+/net: networking
+/arch: architecture specific low-level code
+/include: include files
+
+Device has file in /dev associated with it
+five system calls:
+open, read, write, ioctl (perform operations on device), close
+
+Kernel keeps track of:
+Physical dependencies e.g. devices connected to usb hub
+Buses: channels between processor and one or more devices
+
+Interrupt cycle:
+Device sends interrupt
+CPU selects appropriate interrupt handler
+Interrupt handler processes interrupt:
+	Data to be transferred to/from device
+	Wake up processes which wait for data transfer to be finished
+Interrupt handler clears interrupt bit of device so next interrupt can arrive
+
+
+Process Concept
+
+Batch system - jobs
+Time-shared systems - user programs or tasks
+Process - program in execution; must progress sequentially
+Process includes:
+	program(text), program counter(PC), stack, data section
+States:
+	new->ready->running->waiting->ready->running->terminated
+information:
+	Process state
+	Program counter
+	CPU Registers
+	CPU scheduling information
+	Memory management information
+	Accounting information
+	I/O status information
+
+Parent processes create child processes
+Processes managed by PID
+Possible Resource sharing methods:
+	Parent and child share all resources
+	Children share subset of parent's resources
+	Parent and child share no resources
+Execution - Concurrent or Parent waits until children terminate
+
+fork - new process
+exec - replace process memory space with new program
+
+fork()-------------->wait->resume
+      ->exec()->exit()^
+
+execv - forgets about current program and loads program listed in argument
+e.g.
+char *argv[2];
+argv[0] = "helloWorld";
+argv[1] = NULL;
+execv("helloWorld");

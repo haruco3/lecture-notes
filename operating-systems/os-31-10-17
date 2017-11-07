@@ -1,0 +1,20 @@
+malloc - userspace
+kmalloc - kernelspace (Check result of return value!)
+if null, free all (k)malloc'd data and exit with -eno_mem
+
+kfree required to free kmalloc'd data
+
+kmalloc flags (mandatory): GFP_USER - same functionality as malloc
+GFP_KERNEL - allocate kernel ram, may sleep (e.g. for swapping memory)
+GFP_ATOMIC - allocation does not sleep, use inside interrupt handlers
+
+
+Semaphore S records a list of waiting processes and an integer
+Atomic operations to modify S: wait() and signal() (originally P() and V())
+Semaphore initialised with count value of max number of processes allowed in critical section at the same time
+When a process calls wait(), if count is 0, adds itself to list of sleepers and blocks, else decriments count and enters critical section
+When process exits critical section it calls signal() which increments count and issues wakeup call to process at head of list
+List if FIFO
+Mutex is semaphore where count=1
+
+Code - see lecture notes

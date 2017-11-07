@@ -1,0 +1,17 @@
+IP
+
+Single network layer over which all transports can run, and can run over all available lower layers
+Minimal
+You put an address on a packet and the network makes an *attempt* to deliver it somewhere
+No checksum covering data (checksum covering header)
+Hard to imagine a network layer which offers less
+
+Easy to implement
+
+Proposed in 1974 paper
+
+Notation:
+Four decimal numbers separated by dots
+4 bytes of 32 bits
+e.g. 10010011.10111100.11000000.11111010 / 147.188.192.250 / 93.bc.c0.fa
+

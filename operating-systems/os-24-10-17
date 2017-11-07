@@ -1,0 +1,49 @@
+Job Queue - set of all processes in system
+Ready Queue - set of all processes in main memory waiting to execute (handled by scheduler)
+Device Queues - set of processes waiting for an IO device (handled by device driver)
+Processes migrate among queues
+Usually FIFO
+
+Address of PCB (Process Control Block) uniquely identifies the process
+If memory for PCB cannot be allocated, delete user process data
+
+Scheduling workflow:
+Ready queue -> CPU ->
+                   -> I/O Request -> I/O Queue -> I/O -> Ready Queue
+                   -> Time slice expired -> Ready Queue
+                   -> Fork a child -> Child executes -> Ready Queue
+                   -> Wait for interrupt -> Interrupt occurs -> Ready Queue
+
+Long-term (Job) scheduler - selects which processes should be brought into the ready queue (loaded from the disk into memory)
+Short-term (CPU) scheduler - selects which process should be executed next and allocates CPU
+Short-term scheduler invoked very frequently so must be fast (milliseconds)
+Long-term scheduler invoked very infrequently (seconds, minutes) so can be slow
+Long-term scheduler controls the degree of multiprogramming (how many processes can compete for the CPU)
+Long-term often minimal or absent on mainstream OSs (in Linux Swapper does the job)
+
+Processes can be described as either:
+- I/O-bound process - spends more time doing I/O than computations, many short CPU bursts
+- CPU-bound process - spends more time doing computations; few very long CPU bursts
+
+Problem: Which (ready) process gets the CPU first?
+Prerequisites for successful scheduling:
+CPU-I/O Burst Cycle: Experience shows I/O occurs after fixed amount of time in >90% of situations => appropriate time for re-scheduling
+Preemptive Scheduling: Processes can be forced to relinquish processor
+
+Criteria to measure success of scheduling:
+CPU utilisation
+Throughput: number of processes completed in given time
+Turnaround time: Time taken for each process to be executed
+Waiting time: Time spent in the Ready queue
+Response time: Time between submission of request and production of first response
+
+Scheduling algorithms:
+1) First-come, First-served
+Jobs put in queue and served according to arrival time
+Easy to implement but CPU-intensive processes cna cause long waiting time
+FCFS with preemption is called Round-Robin (standard in time sharing systems)
+Problem: get the time quantum (time before preemption) right
+- too short: too many context switches
+- too long: process can monopolise CPU
+
+21:00

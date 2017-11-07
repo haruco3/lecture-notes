@@ -1,0 +1,18 @@
+External fragmentation: big holes in memory where processes could fit
+Internal fragmentation: small holes - unusable wasted space - caused by programs only a little smaller than hole
+
+Basic process management:
+Place in first suitable hole, if none available suspend oldest process and replace with new one
+
+Rotating first fit: start after last assigned part of memory
+Best fit: find smallest usable space
+Buddy system: free holes administered according to tree structure (powers of 2), splits chunks when neccessary, smallest possible chunk used
+
+Paging:
+Assign memory of fixed size (page)
+Each process has allocated page table
+page table stores addresses of all pages associated with process
+Only OS is allowed to access page tables
+Hardware checks if page no is valid
+
+

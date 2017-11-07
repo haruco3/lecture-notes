@@ -1,0 +1,30 @@
+MTU and IP Fragmentation
+
+When IP packets are sent, they have a maximum size dictated by the network they are being sent over.
+MTU: Maximum Transmission Unit
+Ethernet is 1488 (~1500)
+
+Lower Bound: Links must be able to pass more than 576 bytes in order to pass IP.
+Payload(512) + IP header(20) + room for IP options (44)
+
+Hard limits:
+If you know the device you are talking to is on the same physical network as you, you know the MTU is the network MTU (e.g. if you are both on the same Ethernet, the MTU is ~1500).
+This is very conservative, MTU is very small
+
+Fragmentation:
+Don't do this.
+
+Path MTU Discovery:
+Force DF(Do not fragment) flag on big packet
+ICMP Destination Unreachable if fragmentation required but forbidden
+
+IPv6: Minimum packet size 1280
+Fragmentation an option instead of core part of protocol
+
+
+Network layer: communication between hosts
+Transport layer: communication between processes
+Two main transport services, TCP(Transport Control Protocol)  and UDP(User Datagram Protocol)
+TCP offers congestion control, flow control and connection setup
+UDP more crude
+For both: No delay guarantees, no bandwidth guarantees

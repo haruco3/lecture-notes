@@ -1,0 +1,19 @@
+TCP - Allows for multiplexing (splitting data between multiple applications)
+TCP/UDP segment format:
+<--      32 bits       -->
+Source port #. dest port #
+other header fields
+application data
+
+TCP Connection distinguished by 4 values - source IP & port and dest IP & port
+Web servers have different sockets for each connected client
+
+UDP - everything on server goes through one socket
+Connection only identified by source IP and dest IP
+
+rdt_send() - data
+udt_send() - packet
+rdt_rcv() - packet
+deliver_data() - data
+
+positive acknowledgements (ACKs) or negative (NAKs)
